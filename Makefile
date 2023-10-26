@@ -13,6 +13,7 @@
 #Variables
 
 NAME		= libftprintf.a
+HEADER		= header
 LIBFT		= libft
 SRC_DIR		= c-files/
 OBJ_DIR		= obj/
@@ -35,7 +36,7 @@ WHITE = \033[0;97m
 
 #Sources
 
-C-FILES = ft_printf
+C-FILES = ft_printf ft_printstr
 
 SRC 	= $(addprefix $(SRC_DIR), $(addsuffix .c, $(C-FILES)))
 OBJ 	= $(addprefix $(OBJ_DIR), $(addsuffix .o, $(C-FILES)))
@@ -53,9 +54,9 @@ $(NAME):		$(OBJ)
 				@$(AR) $(NAME) $(OBJ)
 				@echo "$(GREEN)ft_printf compiled!$(DEF_COLOR)"
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJF)
+$(OBJ_DIR)%.o: 	$(SRC_DIR)%.c | $(OBJF)
 				@echo "$(YELLOW)Compiling: $< $(DEF_COLOR)"
-				@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+				@$(CC) $(CFLAGS) $(HEADER) -c $< -o $@
 
 $(OBJF):
 				@mkdir -p $(OBJ_DIR)
@@ -64,6 +65,7 @@ clean:
 				@$(RM) -rf $(OBJ_DIR)
 				@make clean -C $(LIBFT)
 				@echo "$(BLUE)ft_printf object files cleaned!$(DEF_COLOR)"
+				@echo "$(BLUE)libft object files cleaned!$(DEF_COLOR)"
 
 fclean:			clean
 				@$(RM) -f $(NAME)
@@ -75,6 +77,7 @@ re:				fclean all
 				@echo "$(GREEN)Cleaned and rebuilt everything for ft_printf!$(DEF_COLOR)"
 
 norm:
-				@norminette $(SRC) $(INCLUDE) $(LIBFT) | grep -v Norme -B1 || true
+				@echo "$(RED)Launching norminette...$(DEF_COLOR)"
+				@norminette $(LIBFT) $(SRC) $(HEADER)
 
 .PHONY:			all clean fclean re norm

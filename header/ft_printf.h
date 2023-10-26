@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgaume <lgaume@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/16 09:33:19 by lgaume            #+#    #+#             */
-/*   Updated: 2023/10/16 09:33:22 by lgaume           ###   ########.fr       */
+/*   Created: 2023/10/26 20:42:22 by lgaume            #+#    #+#             */
+/*   Updated: 2023/10/26 20:42:25 by lgaume           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/libft.h"
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-int	ft_lstsize(t_list *lst)
-{
-	t_list	*tmp;
-	int		count;
+# include <stdarg.h>
+# include <unistd.h>
+# include <stdlib.h>
 
-	tmp = lst;
-	count = 0;
-	while (tmp)
-	{
-		count++;
-		tmp = tmp->next;
-	}
-	return (count);
-}
+int		ft_printf(const char *str, ...);
+int		ft_formats(va_list args, const char c);
+int		ft_printchar(char c);
+int		ft_printstr(char *str);
+#endif

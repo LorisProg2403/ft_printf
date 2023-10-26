@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c	                                    :+:      :+:    :+:   */
+/*   ft_printstr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgaume <marvin@42lausanne.ch>              +#+  +:+       +#+        */
+/*   By: lgaume <lgaume@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/09 12:20:55 by lgaume            #+#    #+#             */
-/*   Updated: 2023/10/09 12:20:59 by lgaume           ###   ########.fr       */
+/*   Created: 2023/10/26 21:14:50 by lgaume            #+#    #+#             */
+/*   Updated: 2023/10/26 21:14:52 by lgaume           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/libft.h"
+#include "ft_printf.h"
+#include "libf.h"
 
-void	*ft_calloc(size_t count, size_t size)
+int	ft_printstr(char *str)
 {
-	void	*ptr;
-
-	ptr = (void *)malloc(count * size);
-	if (!ptr)
-		return (ptr);
-	ft_bzero(ptr, count * size);
-	return (ptr);
+	if (!str)
+	{
+		ft_putstr_fd("(null)", 1);
+		return (6);
+	}
+	ft_putstr_fd(str, 1);
+	return (ft_strlen(str));
 }
