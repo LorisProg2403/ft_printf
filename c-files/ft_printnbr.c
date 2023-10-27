@@ -10,4 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../header/ft_printf.h"
 
+int	ft_print_nbr(int n)
+{
+	int		len;
+	char	*num;
+
+	len = 0;
+	num = ft_itoa(n);
+	len = ft_print_str(num);
+	free(num);
+	return (len);
+}

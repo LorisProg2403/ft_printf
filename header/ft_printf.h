@@ -19,7 +19,8 @@
 # include "libft.h"
 
 int		ft_printf(const char *str, ...);
-int		ft_formats(va_list args, const char c);
-int		ft_printchar(int c);
-int		ft_printstr(char *str);
+int		ft_print_char(char c);
+int		ft_print_str(char *str);
+int		ft_print_nbr(int n);
+int		ft_print_unsigned(unsigned int n);
 #endif

@@ -1,34 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_unsigned_itoa.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgaume <lgaume@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/12 19:41:52 by lgaume            #+#    #+#             */
-/*   Updated: 2023/10/12 19:41:54 by lgaume           ###   ########.fr       */
+/*   Created: 2023/10/27 01:26:07 by lgaume            #+#    #+#             */
+/*   Updated: 2023/10/27 01:26:09 by lgaume           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/libft.h"
 
-/*
- * Shorter version :
- * 					{
- * 						if (!s)
- * 							return ;
- * 						write (fd, s, ft_strlen(s));
- * 					}
- */
-
-void	ft_putstr_fd(char *s, int fd)
+static int	ft_num_len(unsigned	int num)
 {
-	size_t	i;
+	int	len;
 
-	i = 0;
-	while (s[i])
+	len = 0;
+	while (num != 0)
 	{
-		ft_putchar_fd(s[i], fd);
-		i++;
+		len++;
+		num = num / 10;
 	}
+	return (len);
+}
+
+char	*ft_unsigned_itoa(unsigned int n)
+{
+	char	*num;
+	int 	len;
+
+	len = ft_num_len(n);
+	num = (char *)malloc(sizeof(char) * (len + 1));
+	if (!num)
+		return (0);
+	num[len] = '\0';
+	while (n)
+	{
+		num[len - 1] = n % 10 + '0';
+		n = n / 10;
+		len--;
+	}
+	return (num);
 }
