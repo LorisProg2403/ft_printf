@@ -28,7 +28,7 @@ static int	ft_num_len(unsigned	int num)
 char	*ft_unsigned_itoa(unsigned int n)
 {
 	char	*num;
-	int 	len;
+	int		len;
 
 	len = ft_num_len(n);
 	num = (char *)malloc(sizeof(char) * (len + 1));

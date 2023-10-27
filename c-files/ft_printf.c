@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../header/ft_printf.h"
-#include "stdio.h"
 
 static int	ft_search(va_list args, const char c)
 {
@@ -23,15 +22,13 @@ static int	ft_search(va_list args, const char c)
 	else if (c == 's')
 		print_len += ft_print_str(va_arg(args, char *));
 	else if (c == 'p')
-		/*print_len += ft_print_ptr(va_arg(args, unsigned long long));*/
-		return (0);
+		print_len += ft_print_ptr(va_arg(args, unsigned long long));
 	else if (c == 'd' || c == 'i')
 		print_len += ft_print_nbr(va_arg(args, int));
 	else if (c == 'u')
 		print_len += ft_print_unsigned(va_arg(args, unsigned int));
 	else if (c == 'x' || c == 'X')
-		/*print_len += ft_print_hex(va_arg(args, unsigned int), c);*/
-		return (0);
+		print_len += ft_print_hex(va_arg(args, unsigned int), c);
 	else if (c == '%')
 		print_len += ft_print_char('%');
 	return (print_len);

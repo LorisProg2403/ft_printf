@@ -36,7 +36,7 @@ WHITE = \033[0;97m
 
 #Sources
 
-C-FILES = ft_printf ft_printstr ft_printnbr ft_print_char ft_print_unsigned ft_print_hex
+C-FILES = ft_printf ft_printstr ft_printnbr ft_print_char ft_print_unsigned ft_print_hex ft_print_ptr
 
 SRC 	= $(addprefix $(SRC_DIR), $(addsuffix .c, $(C-FILES)))
 OBJ 	= $(addprefix $(OBJ_DIR), $(addsuffix .o, $(C-FILES)))

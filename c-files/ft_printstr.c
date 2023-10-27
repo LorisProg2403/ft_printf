@@ -34,6 +34,7 @@ void	ft_putstr(char *str)
 		i++;
 	}
 }
+
 int	ft_print_str(char *str)
 {
 	int	i;
