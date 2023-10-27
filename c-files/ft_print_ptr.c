@@ -12,9 +12,9 @@
 
 #include "../header/ft_printf.h"
 
-static int ft_ptrlen(uintptr_t ptr)
+static int	ft_ptrlen(uintptr_t ptr)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	while (ptr)
@@ -51,6 +51,5 @@ int	ft_print_ptr(unsigned long long ptr)
 		ptr_len += ft_print_char('0');
 	else
 		ft_putptr(ptr);
-
 	return (ptr_len + ft_ptrlen(ptr));
 }
