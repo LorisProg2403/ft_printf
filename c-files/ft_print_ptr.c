@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgaume <lgaume@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/26 21:15:02 by lgaume            #+#    #+#             */
-/*   Updated: 2023/10/26 21:15:03 by lgaume           ###   ########.fr       */
+/*   Created: 2023/10/29 00:22:43 by lgaume            #+#    #+#             */
+/*   Updated: 2023/10/29 00:22:44 by lgaume           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,21 +35,21 @@ static void	ft_putptr(uintptr_t ptr)
 	else
 	{
 		if (ptr <= 9)
-			ft_putchar_fd((ptr + '0'), 1);
+			ft_print_char(ptr + '0');
 		else
-			ft_putchar_fd((ptr - 10 + 'a'), 1);
+			ft_print_char(ptr + 'a' - 10);
 	}
 }
 
 int	ft_print_ptr(unsigned long long ptr)
 {
-	int	ptr_len;
+	int	len;
 
-	ptr_len = 0;
-	ptr_len += ft_print_str("0x");
+	len = 0;
+	len += ft_print_str("0x");
 	if (!ptr)
-		ptr_len += ft_print_char('0');
+		len += ft_print_char('0');
 	else
 		ft_putptr(ptr);
-	return (ptr_len + ft_ptrlen(ptr));
+	return (len + ft_ptrlen(ptr));
 }

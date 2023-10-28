@@ -5,15 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgaume <lgaume@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/27 00:30:30 by lgaume            #+#    #+#             */
-/*   Updated: 2023/10/27 00:30:31 by lgaume           ###   ########.fr       */
+/*   Created: 2023/10/29 00:14:57 by lgaume            #+#    #+#             */
+/*   Updated: 2023/10/29 00:15:16 by lgaume           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/ft_printf.h"
 
-int	ft_print_char(char c)
+int	ft_print_char(int c)
 {
-	ft_putchar_fd(c, 1);
-	return (1);
+	return (write(1, &c, 1));
 }

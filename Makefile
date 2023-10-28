@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: lgaume <lgaume@student.42lausanne.ch>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/10/26 20:05:02 by lgaume            #+#    #+#              #
-#    Updated: 2023/10/26 20:05:04 by lgaume           ###   ########.fr        #
+#    Created: 2023/10/28 20:05:02 by lgaume            #+#    #+#              #
+#    Updated: 2023/10/28 20:05:04 by lgaume           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ WHITE = \033[0;97m
 
 #Sources
 
-C-FILES = ft_printf ft_printstr ft_printnbr ft_print_char ft_print_unsigned ft_print_hex ft_print_ptr
+C-FILES = ft_printf ft_putstr ft_print_char ft_print_str ft_print_nbr ft_print_unsigned ft_print_hex ft_print_ptr
 
 SRC 	= $(addprefix $(SRC_DIR), $(addsuffix .c, $(C-FILES)))
 OBJ 	= $(addprefix $(OBJ_DIR), $(addsuffix .o, $(C-FILES)))
@@ -52,10 +52,8 @@ $(NAME):		$(OBJ)
 				@cp libft/libft.a .
 				@mv libft.a $(NAME)
 				@$(AR) $(NAME) $(OBJ)
-				@echo "$(GREEN)ft_printf compiled!$(DEF_COLOR)"
 
 $(OBJ_DIR)%.o: 	$(SRC_DIR)%.c | $(OBJF)
-				@echo "$(YELLOW)Compiling: $< $(DEF_COLOR)"
 				@$(CC) $(CFLAGS) $(HEADER) -c $< -o $@
 
 $(OBJF):
@@ -64,20 +62,20 @@ $(OBJF):
 clean:
 				@$(RM) -rf $(OBJ_DIR)
 				@make clean -C $(LIBFT)
-				@echo "$(BLUE)ft_printf object files cleaned!$(DEF_COLOR)"
-				@echo "$(BLUE)libft object files cleaned!$(DEF_COLOR)"
 
 fclean:			clean
 				@$(RM) -f $(NAME)
 				@$(RM) -f $(LIBFT)/libft.a
-				@echo "$(CYAN)ft_printf executable files cleaned!$(DEF_COLOR)"
-				@echo "$(CYAN)libft executable files cleaned!$(DEF_COLOR)"
 
 re:				fclean all
-				@echo "$(GREEN)Cleaned and rebuilt everything for ft_printf!$(DEF_COLOR)"
 
 norm:
 				@echo "$(RED)Launching norminette...$(DEF_COLOR)"
-				@norminette $(LIBFT) $(SRC) $(HEADER)
+				@echo "$(CYAN)Norminette of LIBFT"
+				@norminette $(LIBFT)
+				@echo "$(MAGENTA)Norminette of C-FILES"
+				@norminette $(SRC)
+				@echo "$(GREEN)Norminette of HEADER"
+				@norminette $(HEADER)
 
 .PHONY:			all clean fclean re norm

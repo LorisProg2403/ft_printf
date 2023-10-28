@@ -5,57 +5,56 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgaume <lgaume@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/26 20:07:11 by lgaume            #+#    #+#             */
-/*   Updated: 2023/10/26 20:07:12 by lgaume           ###   ########.fr       */
+/*   Created: 2023/10/28 22:58:23 by lgaume            #+#    #+#             */
+/*   Updated: 2023/10/28 22:58:25 by lgaume           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/ft_printf.h"
 
-static int	ft_search(va_list args, const char c)
+static int	ft_format(va_list args, const char format)
 {
 	int	print_len;
 
 	print_len = 0;
-	if (c == 'c')
+	if (format == 'c')
 		print_len += ft_print_char(va_arg(args, int));
-	else if (c == 's')
+	if (format == 's')
 		print_len += ft_print_str(va_arg(args, char *));
-	else if (c == 'p')
+	if (format == 'p')
 		print_len += ft_print_ptr(va_arg(args, unsigned long long));
-	else if (c == 'd' || c == 'i')
+	if (format == 'd' || format == 'i')
 		print_len += ft_print_nbr(va_arg(args, int));
-	else if (c == 'u')
+	if (format == 'u')
 		print_len += ft_print_unsigned(va_arg(args, unsigned int));
-	else if (c == 'x' || c == 'X')
-		print_len += ft_print_hex(va_arg(args, unsigned int), c);
-	else if (c == '%')
+	if (format == 'x' || format == 'X')
+		print_len += ft_print_hex(va_arg(args, int), format);
+	if (format == '%')
 		print_len += ft_print_char('%');
 	return (print_len);
 }
 
-int	ft_printf(const char *str, ...)
+int	ft_printf(const char *format, ...)
 {
 	int		i;
-	int		len;
+	int		print_length;
 	va_list	args;
 
+	va_start(args, format);
 	i = 0;
-	len = 0;
-	va_start(args, str);
-	while (str[i])
+	print_length = 0;
+	while (format[i])
 	{
-		if (str[i] == '%')
+		if (format[i] == '%')
 		{
-			len += ft_search(args, str[i + 1]);
-			if (str[i + 1] != '%')
+			print_length += ft_format(args, format[i + 1]);
+			if (format[i + 1] != '%')
 				va_arg(args, void *);
 			i++;
 		}
 		else
-			len += ft_print_char(str[i]);
+			print_length += ft_print_char(format[i]);
 		i++;
 	}
-	va_end(args);
-	return (len);
+	return (print_length);
 }

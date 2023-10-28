@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_unsigned.c                                :+:      :+:    :+:   */
+/*   ft_print_str.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgaume <lgaume@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/29 00:17:57 by lgaume            #+#    #+#             */
-/*   Updated: 2023/10/29 00:17:59 by lgaume           ###   ########.fr       */
+/*   Created: 2023/10/29 00:16:37 by lgaume            #+#    #+#             */
+/*   Updated: 2023/10/29 00:16:41 by lgaume           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/ft_printf.h"
 
-int	ft_print_unsigned(unsigned int n)
+int	ft_print_str(char *str)
 {
-	int		len;
-	char	*num;
+	int	len;
 
-	if (n == 0)
-		return (ft_putstr("0"));
-	num = ft_unsigned_itoa(n);
-	len = ft_putstr(num);
-	free(num);
+	len = 0;
+	if (!str)
+		return (ft_putstr("(null)"));
+	while (str[len])
+		len += ft_print_char(str[len]);
 	return (len);
 }
